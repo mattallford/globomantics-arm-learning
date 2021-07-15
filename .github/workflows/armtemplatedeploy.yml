@@ -8,7 +8,7 @@ on:
 
 env:
   resource_group_name: rg-githubactions
-  location: "Australia East"
+  location: Australia East
   subscriptionId: 4d0243f5-b1f4-4bd0-91bb-ce6481e6e810
 
 jobs:
@@ -28,10 +28,10 @@ jobs:
         with:
           scope: subscription
           subscriptionId: ${{ env.subscriptionId }}
-          region: ${{ env.location }}
+          region: "${{ env.location }}"
           template: ./arm-templates/resourcegroup.json
           parameters:
-            location=${{ env.location }}
+            location="${{ env.location }}"
             resourceGroupName=${{ env.resource_group_name }}
           deploymentName: ${{ env.resource_group_name }}
 
@@ -46,7 +46,7 @@ jobs:
           parameters: 
             sku=Standard_LRS
             storageAccountName=globostg002
-            location=${{ env.location }}
+            location="${{ env.location }}"
           deploymentMode: incremental
 
       - name: Deploy Virtual machine
@@ -58,5 +58,5 @@ jobs:
           template: ./arm-templates/virtualmachine.json
           parameters: 
             adminPassword=${{ secrets.UBUNTU_ADMIN_PASSWORD }}
-            location=${{ env.location }}
+            location="${{ env.location }}"
           deploymentMode: incremental
