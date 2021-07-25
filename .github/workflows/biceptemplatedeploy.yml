@@ -29,23 +29,23 @@ jobs:
         uses: Azure/cli@1.0.4
         with:
           inlinescript: |
-            az deployment sub create /
-            --name ${{ env.resource_group_name }} /
-            --location "${{ env.location }}" /
-            --template-file ./bicep-templates/resourcegroup.bicep /
-            --parameters /
-            resourceGroupName=${{ env.resource_group_name }} /
+            az deployment sub create \
+            --name ${{ env.resource_group_name }} \
+            --location "${{ env.location }}" \
+            --template-file ./bicep-templates/resourcegroup.bicep \
+            --parameters \
+            resourceGroupName=${{ env.resource_group_name }} \
             location="${{ env.location }}"
       
       - name: Deploy virtual network
         uses: Azure/cli@1.0.4
         with:
           inlinescript: |
-            az deployment group create /
-            --resource-group ${{ env.resource_group_name }} /
-            --template-file ./bicep-templates/virtualnetwork.bicep /
-            --parameters /
-            vNetPrefix=bicepazcli /
+            az deployment group create \
+            --resource-group ${{ env.resource_group_name }} \
+            --template-file ./bicep-templates/virtualnetwork.bicep \
+            --parameters \
+            vNetPrefix=bicepazcli \
             location="${{ env.location }}"
 
   bicepArmDeployAction:
