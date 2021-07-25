@@ -1,4 +1,4 @@
-name: "Bicep test"
+name: "Bicep Deploy Workflow"
 
 on:
   push:
